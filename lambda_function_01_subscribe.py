@@ -1,12 +1,5 @@
 import json
-import boto3
-import datetime
 import os
-
-# --- Configuration and Clients ---
-
-# Initialize S3 client
-s3_client = boto3.client('s3')
 
 # Environment variables
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', 'undefined_token')
