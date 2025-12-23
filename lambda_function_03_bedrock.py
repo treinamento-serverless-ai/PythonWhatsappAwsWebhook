@@ -9,9 +9,6 @@ import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError
 
-
-# --- Configuration and Clients ---
-
 # HTTP client
 http = urllib3.PoolManager()
 
@@ -31,6 +28,7 @@ BEDROCK_ALIAS_ID = os.environ.get("BEDROCK_ALIAS_ID", "TSTALIASID")
 WHATSAPP_API_URL = f"https://graph.facebook.com/{API_VERSION}/{PHONE_NUMBER_ID}/messages"
 BUCKET_NAME = os.environ.get('BUCKET_NAME', 'your-bucket-name')  # Default bucket name
 
+# --- Configuration and Clients ---
 # AWS clients
 s3_client = boto3.client('s3')
 bedrock_agent_runtime_client = boto3.client(
@@ -38,9 +36,7 @@ bedrock_agent_runtime_client = boto3.client(
     config=Config(read_timeout=600, connect_timeout=10)
 )
 
-
 # --- Functions ---
-
 def send_whatsapp_message(to_number: str, message_body: str) -> None:
     """
     Sends a text message to a given WhatsApp number using the Meta Graph API.

@@ -4,8 +4,6 @@ import urllib3
 import datetime
 import boto3
 
-# --- Configuration and Clients ---
-
 # HTTP client
 http = urllib3.PoolManager()
 
@@ -19,11 +17,11 @@ API_VERSION = os.environ.get('VERSION', 'v22.0')
 WHATSAPP_API_URL = f"https://graph.facebook.com/{API_VERSION}/{PHONE_NUMBER_ID}/messages"
 BUCKET_NAME = os.environ.get('BUCKET_NAME', 'your-bucket-name')  # Default bucket name
 
+# --- Configuration and Clients ---
 # AWS clients
 s3_client = boto3.client('s3')
 
 # --- Functions ---
-
 def send_whatsapp_message(to_number, message_body):
     headers = {
         "Authorization": f"Bearer {ACCESS_TOKEN}",
