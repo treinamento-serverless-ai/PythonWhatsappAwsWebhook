@@ -151,7 +151,7 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 
     # Persist incoming request to S3
     store_event_to_s3('event', event)
-    store_event_to_s3('body', raw_body)
+    store_event_to_s3('body', json.loads(raw_body) if raw_body != '{}' else {})
 
     if http_method == 'GET':
         # Handle webhook verification challenge
